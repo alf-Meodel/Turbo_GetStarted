@@ -4,6 +4,14 @@
 
 ![border](./assets/line/border_deco_rt.png)
 
+pour demarrer les deux en même temps : 
+
+```
+"scripts": {
+  "dev": "npm-run-all --parallel dev:web dev:api"
+}
+```
+
 # Sommaire
 
 - [Introduction](#introduction)
@@ -16,6 +24,7 @@
 # Navigation
 
 - [Connexion Nest Vite](./doc/connexion_nest_vite.md)
+- [Connexion Java Vite](./doc/connexion_java_vite.md)
 
 ![border](./assets/line/line-pink-point_l.png)
 
