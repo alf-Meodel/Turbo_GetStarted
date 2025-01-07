@@ -128,6 +128,20 @@ VERIFICATION INSTALALTION MAVEN
 
 ```
 mvn -v
+```
+
+### RETOUR DANS LA CONFIG DU BACKEND 
+
+- ensuite nous irons dans le dossier **backend** de notre repo 
+
+```
+cd C:\Users\franc\Desktop\monorepo-react-java\my-turborepo\apps\backend
+```
+
+- Puis nous allons y générer un projet maven 
+
+```
+mvn archetype:generate -DgroupId=com.example -DartifactId=backend -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
 ```
 
