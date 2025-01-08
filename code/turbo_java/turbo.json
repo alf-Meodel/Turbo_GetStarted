@@ -1,0 +1,20 @@
+{
+  "pipeline": {
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputs": []
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["apps/backend/target/**", "apps/frontend/dist/**"]
+    },
+    "backend:dev": {
+      "inputs": ["apps/backend/src/**", "apps/backend/pom.xml"],
+      "cache": false
+    },
+    "frontend:dev": {
+      "inputs": ["apps/frontend/src/**", "apps/frontend/package.json"],
+      "cache": false
+    }
+  }
+}

@@ -14,6 +14,8 @@
 - [Vite react](#vite-react)
 - [Java dans le backend](#java-dans-le-backend)
 - [Creation du projet spring initializr](#creation-du-projet-spring-initializr)
+- [Retour a la racine de turbo pour gérer le backend](#retour-a-la-racine-de-turbo-pour-gérer-le-backend)
+- [Verifier que chaque partie fonctionne independemment](#vérifier-que-chaque-partie-focntionne-independemment)
 
 
 
@@ -162,6 +164,107 @@ Artifact Id : backend
 Packaging : Jar
 Dependencies : Ajoute Spring Web pour créer un backend REST.
 ```
+## Retour a la racine de Turbo pour gérer le backend
+
+- Nous allons retourner a la racine du projet 
+
+```
+cd C:\Users\franc\Desktop\monorepo-react-java\my-turborepo
+```
+
+- ainsi dans le package de turbo a al racine nous allosn ajouter : 
+
+```
+"scripts": {
+  "backend:dev": "cd apps/backend && mvn spring-boot:run",
+  "backend:build": "cd apps/backend && mvn package",
+  "dev": "turbo run dev",
+  "build": "turbo run build"
+}
+```
+
+- Puis nous allons transformer le fichier **turbo.json** 
+
+```bash
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
+```
+
+- Puis nous allons le transformer avec quelques ajouts 
+
+```BASH
+{
+  "pipeline": {
+    "dev": {
+      "dependsOn": ["^dev"],
+      "outputs": []
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["apps/backend/target/**", "apps/frontend/dist/**"]
+    },
+    "backend:dev": {
+      "inputs": ["apps/backend/src/**", "apps/backend/pom.xml"],
+      "cache": false
+    },
+    "frontend:dev": {
+      "inputs": ["apps/frontend/src/**", "apps/frontend/package.json"],
+      "cache": false
+    }
+  }
+}
+
+```
+
+- Puis nous allons modifier le package.json pour lancer le backend et le front end 
+
+
+```bash
+"scripts": {
+  "dev": "turbo run dev",               // Lance le frontend et le backend en mode dev
+  "build": "turbo run build",           // Construit le frontend et le backend
+  "backend:dev": "cd apps/backend && mvn spring-boot:run", // Lance uniquement le backend
+  "frontend:dev": "cd apps/frontend && npm start",         // Lance uniquement le frontend
+  "backend:build": "cd apps/backend && mvn package",       // Construit uniquement le backend
+  "frontend:build": "cd apps/frontend && npm run build"    // Construit uniquement le frontend
+}
+```
+
+## Vérifier que chaque partie focntionne independemment 
+
+- Nous allons dans le dossier backend 
+
+```
+ cd apps/backend
+```
+
+- Ensuite nous allons compiler et exécuter le backend 
+
+```
+mvn compile spring-boot:run
+```
+
+
+
 
 
 ![border](../assets/line/line-pink-point_r.png)
