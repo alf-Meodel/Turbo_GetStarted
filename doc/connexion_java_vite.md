@@ -12,6 +12,10 @@
 
 - [Introduction](#introduction)
 - [Vite react](#vite-react)
+- [Java dans le backend](#java-dans-le-backend)
+- [Creation du projet spring initializr](#creation-du-projet-spring-initializr)
+
+
 
 ![border](../assets/line/border_deco_rb.png)
 
@@ -130,20 +134,35 @@ VERIFICATION INSTALALTION MAVEN
 mvn -v
 ```
 
-### RETOUR DANS LA CONFIG DU BACKEND 
+### CREATION DU PROJET Spring Initializr
 
-- ensuite nous irons dans le dossier **backend** de notre repo 
+- ensuite nous irons dans le dossier **apps** de notre repo ( on va y créer le dossier backend via java spring )
 
-```
-cd C:\Users\franc\Desktop\monorepo-react-java\my-turborepo\apps\backend
-```
-
-- Puis nous allons y générer un projet maven 
+- Pour aller dans le dossier en question 
 
 ```
-mvn archetype:generate -DgroupId=com.example -DartifactId=backend -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+code .
+```
+
+- Puis nous allons lancer Spring Initializr :
+
+Appuie sur Ctrl+Shift+P pour ouvrir la palette de commandes.
+Recherche Spring Initializr: Generate a Maven Project.
+
+- Ensuite nous allons configurer notre projet 
 
 ```
+Configure ton projet :
+
+Sélectionne les options suivantes :
+Language : Java
+Build System : Maven
+Group Id : com.example
+Artifact Id : backend
+Packaging : Jar
+Dependencies : Ajoute Spring Web pour créer un backend REST.
+```
+
 
 ![border](../assets/line/line-pink-point_r.png)
 
