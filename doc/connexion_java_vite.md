@@ -257,13 +257,31 @@ cd C:\Users\franc\Desktop\monorepo-react-java\my-turborepo
  cd apps/backend
 ```
 
-- Ensuite nous allons compiler et exécuter le backend 
+- Ensuite nous allons créer un dossier dans **main/com/example/backend/controllers** que nous allons appeler **HelloController**
+
+```java
+package com.example.backend.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+
+    @GetMapping("/")
+    public String sayHello() {
+        return "Hello, World!";
+    }
+}
 
 ```
-mvn compile spring-boot:run
+
+- puis 
+
+
 ```
-
-
+mvn spring-boot:run
+```
 
 
 
